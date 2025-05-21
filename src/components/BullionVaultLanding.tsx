@@ -30,21 +30,33 @@ const fontStyles = `
   }
 `;
 
-const BullionVaultLanding = () => {
-  const [formData, setFormData] = useState({
+type FormData = {
+  name: string;
+  phone: string;
+  message: string;
+};
+
+type VisibilityState = {
+  hero: boolean;
+  whatWeBuy: boolean;
+  partnership: boolean;
+};
+
+const BullionVaultLanding: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
     message: ''
   });
   
-  const [isVisible, setIsVisible] = useState({
+  const [isVisible, setIsVisible] = useState<VisibilityState>({
     hero: false,
     whatWeBuy: false,
     partnership: false
   });
   
   // Mobile detection
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     // Set initial visibility
@@ -55,7 +67,7 @@ const BullionVaultLanding = () => {
     });
     
     // Check if screen is mobile
-    const checkMobile = () => {
+    const checkMobile = (): void => {
       setIsMobile(window.innerWidth <= 768);
     };
     
@@ -63,7 +75,7 @@ const BullionVaultLanding = () => {
     checkMobile();
     
     // Add event listeners
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       const whatWeBuySection = document.getElementById('what-we-buy');
       const partnershipSection = document.getElementById('contact');
       
@@ -85,7 +97,7 @@ const BullionVaultLanding = () => {
     };
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
@@ -93,7 +105,7 @@ const BullionVaultLanding = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (): void => {
     // Form submission logic would go here
     alert('Thank you for your message. We will get back to you shortly.');
     setFormData({ name: '', phone: '', message: '' });
@@ -147,7 +159,7 @@ const BullionVaultLanding = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <img src="/bullionvaultlogo.png" alt="The Bullion Vault Logo" className="h-32 w-auto" />
+            <img src="/bullionvaultlogo.png" alt="The Bullion Vault Logo" className="h-21 w-auto" />
           </motion.div>
           
           {/* Updated Contact Info with WhatsApp */}
