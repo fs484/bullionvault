@@ -153,8 +153,25 @@ const BullionVaultLanding: React.FC = () => {
   };
 
   const handleSubmit = (): void => {
-    // Form submission logic would go here
-    alert('Thank you for your message. We will get back to you shortly.');
+    // Create email content
+    const subject = encodeURIComponent('Contact Form Submission - The Bullion Vault');
+    const body = encodeURIComponent(`
+Name: ${formData.name}
+Phone: ${formData.phone}
+Message: ${formData.message}
+
+--
+This message was sent from The Bullion Vault website contact form.
+    `);
+    
+    // Create mailto link
+    const mailtoLink = `mailto:Thebullionvaultuk@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Show confirmation and reset form
+    alert('Thank you for your message. Your email client will open to send the message.');
     setFormData({ name: '', phone: '', message: '' });
   };
 
@@ -263,7 +280,7 @@ const BullionVaultLanding: React.FC = () => {
               whileTap={{ scale: 0.9 }}
             >
               <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" clipRule="evenodd" d="M20.52 3.449C18.24 1.245 15.24 0.05 12.045 0.05C5.463 0.05 0.102 5.412 0.102 11.992C0.102 14.097 0.735 16.137 1.923 17.879L0 24.05L6.335 22.165C8.01 23.236 9.93 23.791 11.895 23.791H11.9C18.48 23.791 23.85 18.429 23.85 11.849C23.85 8.685 22.65 5.715 20.52 3.449ZM12.045 21.781H12.04C10.275 21.781 8.55 21.25 7.05 20.251L6.69 20.029L2.895 21.131L4.01 17.435L3.765 17.057C2.677 15.493 2.096 13.638 2.096 11.722C2.096 6.497 6.48 2.24 12.05 2.24C14.7 2.24 17.175 3.239 19.025 5.04C20.875 6.841 21.855 9.316 21.851 11.972C21.85 17.201 17.465 21.781 12.045 21.781Z"/>
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
               </svg>
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-10"></span>
             </motion.a>
@@ -314,12 +331,12 @@ const BullionVaultLanding: React.FC = () => {
                   className="text-3xl font-bold mb-4 text-white leading-tight"
                   variants={textReveal}
                 >
-                  Sell Your Gold today <span className="text-[#D4AF37]">in person</span> with people you can trust.
+                  Sell Your <span className="text-[#D4AF37]">Gold</span> today <span className="text-[#D4AF37]">in person</span> with people you can trust.
                 </motion.h1>
               </AnimatePresence>
               
               <motion.p 
-                className="text-lg mb-6 text-white"
+                className="text-xl mb-4 text-white font-semibold"
                 variants={{
                   hidden: { opacity: 0, y: 30 },
                   visible: { 
@@ -332,7 +349,23 @@ const BullionVaultLanding: React.FC = () => {
                   }
                 }}
               >
-                Visit us in-store at MC Watches, 66 George Street, Altrincham. 
+                <span className="text-2xl">Visit us in-store</span> at MC Watches, 66 George Street, Altrincham.
+              </motion.p>
+              
+              <motion.p 
+                className="text-lg mb-6 text-white"
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { 
+                      duration: 0.8,
+                      delay: 0.3
+                    }
+                  }
+                }}
+              >
                 No pressure to sell — get your items tested for free.
               </motion.p>
               
@@ -500,7 +533,7 @@ const BullionVaultLanding: React.FC = () => {
                 className="mb-6 w-28 h-28 bg-white rounded-full flex items-center justify-center shadow-lg shadow-black/30 hover:shadow-black/50 transition duration-300 transform hover:scale-105 group"
                 whileHover={{ y: -5 }}
               >
-                <img src="/gold-bars.png" alt="Gold" className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
+                <img src="/gold1.png" alt="Gold" className="w-24 h-24 object-contain group-hover:scale-110 transition-transform duration-300" />
               </motion.div>
               <h3 className="text-2xl font-semibold text-black">Gold</h3>
             </motion.div>
@@ -511,7 +544,7 @@ const BullionVaultLanding: React.FC = () => {
                 className="mb-6 w-28 h-28 bg-white rounded-full flex items-center justify-center shadow-lg shadow-black/30 hover:shadow-black/50 transition duration-300 transform hover:scale-105 group"
                 whileHover={{ y: -5 }}
               >
-                <img src="/silver-coin.png" alt="Silver" className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
+                <img src="/silver1.png" alt="Silver" className="w-24 h-24 object-contain group-hover:scale-110 transition-transform duration-300" />
               </motion.div>
               <h3 className="text-2xl font-semibold text-black">Silver</h3>
             </motion.div>
@@ -522,7 +555,7 @@ const BullionVaultLanding: React.FC = () => {
                 className="mb-6 w-28 h-28 bg-white rounded-full flex items-center justify-center shadow-lg shadow-black/30 hover:shadow-black/50 transition duration-300 transform hover:scale-105 group"
                 whileHover={{ y: -5 }}
               >
-                <img src="/platinum-ring.png" alt="Platinum" className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
+                <img src="/platnium.png" alt="Platinum" className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
               </motion.div>
               <h3 className="text-2xl font-semibold text-black">Platinum</h3>
             </motion.div>
@@ -533,7 +566,7 @@ const BullionVaultLanding: React.FC = () => {
                 className="mb-6 w-28 h-28 bg-white rounded-full flex items-center justify-center shadow-lg shadow-black/30 hover:shadow-black/50 transition duration-300 transform hover:scale-105 group"
                 whileHover={{ y: -5 }}
               >
-                <img src="/jewellery.png" alt="Jewellery" className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
+                <img src="/jewlerry.png" alt="Jewellery" className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
               </motion.div>
               <h3 className="text-2xl font-semibold text-black">Jewellery</h3>
             </motion.div>
@@ -555,7 +588,7 @@ const BullionVaultLanding: React.FC = () => {
                 className="mb-6 w-28 h-28 bg-white rounded-full flex items-center justify-center shadow-lg shadow-black/30 hover:shadow-black/50 transition duration-300 transform hover:scale-105 group"
                 whileHover={{ y: -5 }}
               >
-                <img src="/bullion.png" alt="Bullion" className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
+                <img src="/bullions.png" alt="Bullion" className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
               </motion.div>
               <h3 className="text-2xl font-semibold text-black">Bullion</h3>
             </motion.div>
@@ -605,7 +638,7 @@ const BullionVaultLanding: React.FC = () => {
                 <div className="mb-10 flex items-center justify-center">
                   {/* First Logo with hover effect */}
                   <motion.div 
-                    className="w-36 h-36 flex items-center justify-center bg-white rounded-full shadow-lg p-2 backdrop-blur-sm transform transition duration-300 mr-4 relative overflow-hidden group"
+                    className="w-36 h-36 flex items-center justify-center bg-black rounded-full shadow-lg p-2 backdrop-blur-sm transform transition duration-300 mr-4 relative overflow-hidden group"
                     whileHover={{ 
                       scale: 1.05,
                       boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3)"
@@ -633,14 +666,14 @@ const BullionVaultLanding: React.FC = () => {
                   
                   {/* Second Logo with hover effect */}
                   <motion.div 
-                    className="w-36 h-36 flex items-center justify-center bg-white rounded-full shadow-lg p-2 backdrop-blur-sm transform transition duration-300 ml-4 relative overflow-hidden group"
+                    className="w-36 h-36 flex items-center justify-center bg-black rounded-full shadow-lg p-2 backdrop-blur-sm transform transition duration-300 ml-4 relative overflow-hidden group"
                     whileHover={{ 
                       scale: 1.05,
                       boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3)"
                     }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <img src="/mcwatcheslogo.png" alt="MC Watches Logo" className="w-full h-full object-contain relative z-10" />
+                    <img src="/mclogo.png" alt="MC Watches Logo" className="w-full h-full object-contain relative z-10" />
                   </motion.div>
                 </div>
                 <motion.p 
@@ -788,7 +821,7 @@ const BullionVaultLanding: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <img src="/bullionvaultlogo.png" alt="The Bullion Vault Logo" className="h-16 w-auto" />
+              <img src="/bullionvaultlogo.png" alt="The Bullion Vault Logo" className="h-24 w-auto" />
             </motion.div>
             
             <motion.div 
