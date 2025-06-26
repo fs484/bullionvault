@@ -224,7 +224,7 @@ This message was sent from The Bullion Vault website contact form.
       
       {/* Header - Reduced horizontal padding */}
       <motion.header 
-        className="bg-black bg-opacity-90 backdrop-filter backdrop-blur-md text-white py-4 px-2 sticky top-0 z-50 shadow-lg border-b border-[#D4AF37]/20"
+        className="bg-black bg-opacity-90 backdrop-filter backdrop-blur-md text-white py-0 px-1 md:px-2 sticky top-0 z-50 shadow-lg border-b border-[#D4AF37]/20"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -331,7 +331,7 @@ This message was sent from The Bullion Vault website contact form.
                   className="text-3xl font-bold mb-4 text-white leading-tight"
                   variants={textReveal}
                 >
-                  Sell Your <span className="text-[#D4AF37]">Gold</span> today <span className="text-[#D4AF37]">in person</span> with people you can trust.
+                  Sell Your <span className="text-[#D4AF37]">Gold</span> today <span className="text-[#D4AF37]">in person</span> with people you can <span className="text-[#D4AF37]">Trust</span>.
                 </motion.h1>
               </AnimatePresence>
               
@@ -388,7 +388,7 @@ This message was sent from The Bullion Vault website contact form.
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Get a Free Testing Today
+                Get a Free Valuation Today
               </motion.a>
             </motion.div>
           </motion.div>
@@ -465,7 +465,7 @@ This message was sent from The Bullion Vault website contact form.
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Get a Free Testing or Valuation Today
+                Get a Free Valuation Today
               </motion.a>
             </motion.div>
           </motion.div>
