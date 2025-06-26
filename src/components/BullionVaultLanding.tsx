@@ -331,7 +331,7 @@ This message was sent from The Bullion Vault website contact form.
                   className="text-3xl font-bold mb-4 text-white leading-tight"
                   variants={textReveal}
                 >
-                  Sell Your <span className="text-[#D4AF37]">Gold</span> today <span className="text-[#D4AF37]">in person</span> with people you can trust.
+                  Sell Your <span className="text-[#D4AF37]">Gold</span> today <span className="text-[#D4AF37]">in person</span> with people you can <span className="text-[#D4AF37]">Trust</span>.
                 </motion.h1>
               </AnimatePresence>
               
