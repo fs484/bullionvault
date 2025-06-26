@@ -222,9 +222,9 @@ This message was sent from The Bullion Vault website contact form.
       {/* Add font styles */}
       <style>{fontStyles}</style>
       
-      {/* Header - Modern and sleek */}
+      {/* Header - Reduced horizontal padding */}
       <motion.header 
-        className="bg-black bg-opacity-90 backdrop-filter backdrop-blur-md text-white p-4 sticky top-0 z-50 shadow-lg border-b border-[#D4AF37]/20"
+        className="bg-black bg-opacity-90 backdrop-filter backdrop-blur-md text-white py-4 px-2 sticky top-0 z-50 shadow-lg border-b border-[#D4AF37]/20"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -495,6 +495,150 @@ This message was sent from The Bullion Vault website contact form.
         </motion.div>
       </section>
 
+      {/* Google Maps Section - Clean map only */}
+      <section className="py-20 bg-black relative overflow-hidden">
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <pattern id="mapGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+              <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#D4AF37" strokeWidth="0.5"/>
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#mapGrid)" />
+          </svg>
+        </div>
+
+        <div className="container mx-auto px-4 relative">
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.h2 
+              className="text-5xl font-bold text-[#D4AF37] mb-6"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { 
+                    duration: 0.8,
+                    delay: 0.2
+                  }
+                }
+              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              Visit Our Store
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-white max-w-2xl mx-auto"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { 
+                    duration: 0.8,
+                    delay: 0.4
+                  }
+                }
+              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              Find us at MC Watches in the heart of Altrincham
+            </motion.p>
+          </motion.div>
+
+          {/* Google Maps Embed */}
+          <motion.div 
+            className="max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              className="relative rounded-xl overflow-hidden shadow-2xl border-2 border-[#D4AF37]/30 group"
+              whileHover={{ 
+                scale: 1.02,
+                boxShadow: "0 20px 40px -10px rgba(212, 175, 55, 0.4)"
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Map overlay with glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none"></div>
+              
+              {/* Google Maps Embed */}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2374.7234567890123!2d-2.3467890000000002!3d53.3876540000000000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bb3c0c0c0c0c0%3A0x1234567890abcdef!2s66%20George%20Street%2C%20Altrincham%20WA14%201RQ%2C%20UK!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                width="100%"
+                height="500"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="relative z-0"
+              ></iframe>
+              
+              {/* Floating location pin animation */}
+              <motion.div 
+                className="absolute top-4 right-4 w-12 h-12 bg-[#D4AF37] rounded-full flex items-center justify-center shadow-lg z-20"
+                animate={{ 
+                  y: [0, -10, 0],
+                  boxShadow: [
+                    "0 4px 15px rgba(212, 175, 55, 0.3)",
+                    "0 8px 25px rgba(212, 175, 55, 0.5)",
+                    "0 4px 15px rgba(212, 175, 55, 0.3)"
+                  ]
+                }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 2,
+                  ease: "easeInOut"
+                }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </motion.div>
+            </motion.div>
+            
+            {/* Directions button */}
+            <motion.div 
+              className="mt-6 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <motion.a
+                href="https://maps.google.com/?q=66+George+Street,+Altrincham+WA14+1RQ,+UK"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-gradient-to-r from-[#D4AF37] to-[#B8960B] text-black font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-[#D4AF37]/50 transition-all duration-300 group"
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -2
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+                Get Directions
+              </motion.a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* What We Buy Section - Enhanced with smooth animations */}
       <section 
         id="what-we-buy" 
@@ -666,7 +810,7 @@ This message was sent from The Bullion Vault website contact form.
                   
                   {/* Second Logo with hover effect */}
                   <motion.div 
-                    className="w-36 h-36 flex items-center justify-center bg-black rounded-full shadow-lg p-2 backdrop-blur-sm transform transition duration-300 ml-4 relative overflow-hidden group"
+                    className="w-36 h-36 flex items-center justify-center bg-white rounded-full shadow-lg p-2 backdrop-blur-sm transform transition duration-300 ml-4 relative overflow-hidden group"
                     whileHover={{ 
                       scale: 1.05,
                       boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3)"
