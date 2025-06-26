@@ -580,7 +580,7 @@ This message was sent from The Bullion Vault website contact form.
                 width="100%"
                 height="500"
                 style={{ border: 0 }}
-                allowFullScreen=""
+                allowFullScreen={true}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="relative z-0"
